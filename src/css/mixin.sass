@@ -1,0 +1,68 @@
+
+//@at-root抛出
+
+// 网格背景
+@mixin checkerboard($size, $base ,$accent: rgba(0,0,0,.25)){
+	background: $base;
+	background-image:
+		linear-gradient(45deg,$accent 25% ,transparent 0, 
+			transparent 75% ,$accent 0),
+		linear-gradient(45deg,$accent 25% ,transparent 0, 
+			transparent 75% ,$accent 0) ;
+	background-position: 0 0,$size $size ;	
+	background-size: 2*$size 2*$size;
+}
+
+//宽高
+@mixin wh($w:100% ,$h:100%){
+	width: $w;
+	height:$h;
+}
+
+//根据视口居中
+@mixin jzv{
+	margin-top: 50% ;
+	transform: translateY(-50%);
+}
+
+//绝对位移加transform居中
+@mixin jzpt{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+//图片菱形
+@mixin lx{
+	clip-path: polygon(50% 0 , 100% 50% ,50% 100% ,0 50%);
+	transition: 1s clip-path;
+}
+//悬浮还原
+@mixin hy{
+	clip-path: polygon(0 0 , 100% 0 ,100% 100% ,0 100%);
+}
+
+
+// 两圈边框
+@mixin brd($br:.8em ,$brw:.4em ,$cl: #655){
+	border-radius: $br;
+	box-shadow: 0 0 0 $brw $cl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
