@@ -4,6 +4,8 @@ import {getStore} from '../components/utils/mty.js'
 
 import munsls from './munsList.js'
 
+import rotue from './routecd.js'
+
 //import App from '../App.vue';
 
 Vue.use(Router);
@@ -55,14 +57,19 @@ munsls.forEach(
 	}
 )
 
-console.log(rotArtlag)
+
+
+console.log(rotue);
 
 const routes = [
 	{path: "/" ,redirect:"/login"},
 	{path: "/login" ,component: Login},
-	{path:'/home',component:Home,
-	children:[...rotArtlag]
-	}
+	{path: "/404" ,component: Login},
+	{path:'/home',component:Home ,redirect:"/userManager",
+	children:[...rotue]
+	},
+	{ path: '*', redirect: '/404', hidden: true }
+	
   
 ]
 

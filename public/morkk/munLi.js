@@ -31,6 +31,7 @@ export default {
 	 * @return {{code: number, count: number, data: *[]}}
 	 */
 	getUserList:config => {
+		console.log(config.body)
 	  const { limit , page } = JSON.parse(config.body);
 	  let mockList = List;
 	  const userList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))

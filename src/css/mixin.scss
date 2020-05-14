@@ -1,0 +1,276 @@
+
+//@at-root抛出
+
+// 网格背景
+@mixin checkerboard($size, $base ,$accent: rgba(0,0,0,.25)){
+	background: $base;
+	background-image:
+		linear-gradient(45deg,$accent 25% ,transparent 0, 
+			transparent 75% ,$accent 0),
+		linear-gradient(45deg,$accent 25% ,transparent 0, 
+			transparent 75% ,$accent 0) ;
+	background-position: 0 0,$size $size ;	
+	background-size: 2*$size 2*$size;
+}
+
+//宽高
+@mixin wh($w:100% ,$h:100%){
+	width: $w;
+	height:$h;
+}
+
+//根据视口居中
+@mixin jzv{
+	margin-top: 50% ;
+	transform: translateY(-50%);
+}
+
+//绝对位移加transform居中
+@mixin jzpt{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+//图片菱形
+@mixin lx{
+	clip-path: polygon(50% 0 , 100% 50% ,50% 100% ,0 50%);
+	transition: 1s clip-path;
+}
+//悬浮还原
+@mixin hy{
+	clip-path: polygon(0 0 , 100% 0 ,100% 100% ,0 100%);
+}
+
+
+// 两圈边框
+@mixin brd($br:.8em ,$brw:.4em ,$cl: #655){
+	border-radius: $br;
+	box-shadow: 0 0 0 $brw $cl;
+}
+
+//翻页折角边框。flodedd为div样式，flodedb为伪元素样式
+@mixin flodedd($br: 12em,$pad:1em){
+	position: relative;
+	width: $br;
+	background: #58a; /* Fallback */
+	background: linear-gradient(-150deg, transparent 1.5em, #58a 0);
+	padding: $pad;
+	color: white;
+	font: 100%/1.6 Baskerville, Palatino, serif;
+	border-radius: .5em;
+}
+@mixin flodedb{
+	content: '';
+	position: absolute;
+	top: 0; right: 0;
+	width: 1.73em; height: 3em;
+	background: linear-gradient(to left bottom, transparent 50%, rgba(0,0,0,.2) 0, rgba(0,0,0,.4)) 100% 0 no-repeat;
+	transform: translateY(-1.3em) rotate(-30deg);
+	transform-origin: bottom right;
+	border-bottom-left-radius: .5em;
+	box-shadow: -.2em .2em .3em -.1em rgba(0,0,0,.15)
+}
+
+//平行四边形button点击元素
+//使用 <a href="#yolo" class="button"><div>Click me</div></a>
+@mixin btnn($sizb:150% , $mg:.2em){
+	position: relative;
+	display: inline-block;
+	padding: .2em .5em;
+	border: 0; 
+	margin: $mg;
+	background: transparent;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	font: bold $sizb/1 sans-serif;
+}
+
+@mixin btnnbf($ddeg:30deg){
+	content: ''; /* To generate the box */
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: -1;
+	background: #58a;
+	transform: skew($ddeg);
+}
+
+//信封边框
+@mixin  vintage($k:20em){
+	padding: .5em;
+	border: .2em solid transparent;
+	background: linear-gradient(white, white) padding-box,
+		            repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, 
+		              #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0 / 6em 6em;
+		
+	max-width: $k ;
+	font: 100%/1.6 Baskerville, Palatino, serif;
+}
+
+
+//文字旋转circular为div样式  csvg为div下的svg样式，csvghv为hover样式
+@mixin circular{
+	width: 30em;
+	height: 30em;
+	margin: 4em auto 0;
+}
+
+@mixin csvg{
+	display: block;
+	overflow: visible;
+	transition: 10s linear transform;
+}
+
+@mixin csvghv{
+	transform: rotate(-2turn); 
+}
+@mixin csvgtext{
+	fill: currentColor ;
+}
+@mixin csvgpath{
+	fill: none;
+}
+
+//字体高亮
+@mixin txtgl{
+	color: #ffc;
+	text-decoration: none;
+	transition: 1s;
+}
+@mixin txtglhv{
+	text-shadow: 0 0 .1em, 0 0 .3em;
+}
+
+//自定义标签导航
+//文本父元素
+@mixin tabnavbsdv{
+	position: relative;
+	z-index: 1;
+	padding-left: 1em;
+}
+
+//文本主体
+@mixin tabnavbstx{
+	position: relative;
+	display: inline-block;
+	padding: .3em 1em 0;
+	color: inherit;
+	text-decoration: none;
+	margin: 0 -.3em;
+}
+//文本主体伪元素
+@mixin tabnavbstxbf{
+	content: ''; /* To generate the box */
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: -1;
+	border-bottom: none;
+	border-radius: .5em .5em 0 0;
+	background: #ccc linear-gradient(hsla(0,0%,100%,.6), hsla(0,0%,100%,0));
+	box-shadow: 0 .15em white inset;
+	border: .1em solid rgba(0,0,0,.4);
+}
+
+@mixin xztabtxbfys($num:2){
+	@include tabnavbstxbf ;
+	@if $num == 1 {
+		@include tabnavbstxlf ;
+	}@else if $num == 3 {
+		@include tabnavbstxrg ;
+	}@else{
+		@include tabnavbstxmr ;	
+	}
+}
+
+
+//active样式
+@mixin tabnavbstxbfact{
+	z-index: 2;
+}
+@mixin tabnavbstxbfactbf{
+	background-color: #eee;
+	margin-bottom: -.08em;
+}
+
+
+//三种样式
+@mixin tabnavbstxlf{
+	transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
+	transform-origin: bottom left;
+	}
+@mixin tabnavbstxmr{
+	transform: scale(1.1, 1.3) perspective(.5em) rotateX(5deg);
+	transform-origin: bottom;
+}
+@mixin tabnavbstxrg{
+	transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
+	transform-origin: bottom right;
+}
+
+// nav {
+// 	position: relative;
+// 	z-index: 1;
+// 	padding-left: 1em;
+// }
+
+// nav > a {
+// 	position: relative;
+// 	display: inline-block;
+// 	padding: .3em 1em 0;
+// 	color: inherit;
+// 	text-decoration: none;
+// 	margin: 0 -.3em;
+// } 
+
+// nav > a::before,
+// main {
+// 	border: .1em solid rgba(0,0,0,.4);
+// }
+
+// nav a::before {
+// 	content: ''; /* To generate the box */
+// 	position: absolute;
+// 	top: 0; right: 0; bottom: 0; left: 0;
+// 	z-index: -1;
+// 	border-bottom: none;
+// 	border-radius: .5em .5em 0 0;
+// 	background: #ccc linear-gradient(hsla(0,0%,100%,.6), hsla(0,0%,100%,0));
+// 	box-shadow: 0 .15em white inset;
+// 	transform: scale(1.1, 1.3) perspective(.5em) rotateX(5deg);
+// 	transform-origin: bottom;
+// }
+
+// nav a.selected { z-index: 2;}
+
+// nav a.selected::before {
+// 	background-color: #eee;
+// 	margin-bottom: -.08em;
+// }
+
+// nav.left > a::before {
+// 	transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
+// 	transform-origin: bottom left;
+// }
+
+// nav.right { padding-left: 2em; }
+
+// nav.right > a::before {
+// 	transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
+// 	transform-origin: bottom right;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

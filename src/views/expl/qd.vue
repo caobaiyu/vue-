@@ -1,6 +1,6 @@
 <template>
 	<div>
-	<h1>项目分布</h1>
+	<h1>vuex测试使用</h1>
 	<h2>yyyy888</h2>
 	<h2>store中的name数据：{{formatName}}</h2>
 	<div>

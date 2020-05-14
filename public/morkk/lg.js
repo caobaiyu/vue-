@@ -1,5 +1,7 @@
 import Mock from 'mockjs'
 
+import getusse from './munLi.js'
+
 //用户名，密码
 let username = [
 	["caobaiyu" , "yu0828"] ,
@@ -46,7 +48,8 @@ export default {
 		   status:'fail'
 		 }
 		}
-	}
+	},
+	getusse ,
 }
 
 

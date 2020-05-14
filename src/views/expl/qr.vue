@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>资金管理</h1>
+		<!-- <h1>资金管理</h1> -->
 		<router-view/>
 	</div>
 	

@@ -9,7 +9,10 @@
  ax.interceptors.request.use( req=>{
 	 //todo 发送前
 	 if(req.method === 'post'){
+		 console.log(req)
 		 req.data = JSON.stringify(req.data)
+	 }else{
+		 req.data = JSON.stringify(req.params)
 	 }
 	 return req ;
  } , er => {
@@ -69,7 +72,7 @@
  
  export default {
 	 Apost ,
-	 Aget 
+	 Aget ,
  }
  
  

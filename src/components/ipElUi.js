@@ -3,7 +3,7 @@
 // 按需注册vant组件
 import Vue from 'vue';
 import {
-  // Pagination,
+  Pagination,
   // Dialog,
   // Autocomplete,
   // Dropdown,
@@ -27,8 +27,8 @@ import {
   // OptionGroup,
   Button,
   // ButtonGroup,
-  // Table,
-  // TableColumn,
+  Table,
+  TableColumn,
   // DatePicker,
   // TimeSelect,
   // TimePicker,
@@ -44,7 +44,7 @@ import {
   // Tree,
   // Alert,
   // Slider,
-  // Icon,
+  Icon,
   Row,
   Col,
   // Upload,
@@ -76,13 +76,13 @@ import {
   // Backtop,
   // PageHeader,
   // CascaderPanel,
-  // Loading,
+  Loading,
   // MessageBox,
   Message,
   // Notification
 } from 'element-ui';
 
-// Vue.use(Pagination);
+Vue.use(Pagination);
 // Vue.use(Dialog);
 // Vue.use(Autocomplete);
 // Vue.use(Dropdown);
@@ -106,8 +106,8 @@ Vue.use(Input);
 // Vue.use(OptionGroup);
 Vue.use(Button);
 // Vue.use(ButtonGroup);
-// Vue.use(Table);
-// Vue.use(TableColumn);
+Vue.use(Table);
+Vue.use(TableColumn);
 // Vue.use(DatePicker);
 // Vue.use(TimeSelect);
 // Vue.use(TimePicker);
@@ -123,7 +123,7 @@ Vue.use(FormItem);
 // Vue.use(Tree);
 // Vue.use(Alert);
 // Vue.use(Slider);
-// Vue.use(Icon);
+Vue.use(Icon);
 Vue.use(Row);
 Vue.use(Col);
 // Vue.use(Upload);
@@ -156,9 +156,9 @@ Vue.use(Footer);
 // Vue.use(PageHeader);
 // Vue.use(CascaderPanel);
 
-// Vue.use(Loading.directive);
+Vue.use(Loading.directive);
 
-// Vue.prototype.$loading = Loading.service;
+Vue.prototype.$loading = Loading.service;
 // Vue.prototype.$msgbox = MessageBox;
 // Vue.prototype.$alert = MessageBox.alert;
 // Vue.prototype.$confirm = MessageBox.confirm;

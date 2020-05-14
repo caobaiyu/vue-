@@ -7,6 +7,7 @@ import store from './store/index.js'
 
 import '../public/morkk/index.js'
 
+import './css/base.scss' ;
 
 // 引入图标库
 import './components/icons/iconfont.css' ;

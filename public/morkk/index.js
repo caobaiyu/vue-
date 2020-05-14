@@ -13,7 +13,10 @@ Mork.mock('/login',"post" ,(options)=>{
 	return lg.login(options)
 }
 )
-
+Mork.mock(/\/user\/list\/get/, 'get', options => {
+	console.log(options) ;
+	return lg.getusse.getUserList(options)
+})
 // Mork.mock('/login', {'ret':0 ,"data":"失败"}
 // )
 

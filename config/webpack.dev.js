@@ -43,8 +43,8 @@ module.exports = merge(webpackCommonConfig, {
 			 loader: 'sass-resources-loader' ,
 			  options: {
 				  resources: [
-					  resolveResource("base.sass"),
-					  resolveResource("mixin.sass"),
+					  // resolveResource("base.scss"),
+					  resolveResource("mixin.scss"),
 				  ]
 			  }
 		  }

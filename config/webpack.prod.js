@@ -1,5 +1,7 @@
 //生产环境
 
+
+const webpack = require('webpack');
 // config/webpack.prod.js
 // 引入清除打包后文件的插件（最新版的需要解构，不然会报不是构造函数的错，而且名字必须写CleanWebpackPlugin）
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -14,7 +16,8 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 // 用于压缩css代码
 const optimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 
-
+// new webpack.IgnorePlugin(requestRegExp, [contextRegExp])
+// new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 
 function resolveResource(name) {
   return require("path").resolve(__dirname, '../src/css/' + name);
@@ -71,8 +74,7 @@ module.exports = merge(webpackCommonConfig, {
 			 loader: 'sass-resources-loader' ,
 			  options: {
 				  resources: [
-					  resolveResource("base.sass"),
-					  resolveResource("mixin.sass"),
+					  resolveResource("mixin.scss"),
 				  ]
 			  }
 		  }
@@ -101,5 +103,6 @@ module.exports = merge(webpackCommonConfig, {
         }],
       },
     }),
+	// new webpack.IgnorePlugin(/.*\/morkk$/),
   ]
 });
