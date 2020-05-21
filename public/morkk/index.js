@@ -17,6 +17,12 @@ Mork.mock(/\/user\/list\/get/, 'get', options => {
 	console.log(options) ;
 	return lg.getusse.getUserList(options)
 })
+
+Mork.mock(/\/map\/line\/get/, 'get', options => {
+	console.log(options) ;
+	return lg.linedat.getlinear(options)
+})
+
 // Mork.mock('/login', {'ret':0 ,"data":"失败"}
 // )
 

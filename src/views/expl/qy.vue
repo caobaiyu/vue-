@@ -1,21 +1,26 @@
 <template>
-	<div>
-		<div  >
-			 <el-row :gutter="10"> 
-				 <el-col :span="12" style="height:100%;">
-					 <div id="typePosition"></div> 
-				 </el-col>
-				 <el-col :span="12" style="height:100%;">
-					 <div id="typePosition2"></div> 
-				 </el-col>
-			 </el-row>
-		</div>
-	</div>
+  <div>
+    <div>
+      <el-row :gutter="10">
+        <el-col :span="12" style="height:100%;">
+          <div id="typePosition"></div>
+        </el-col>
+        <el-col :span="12" style="height:100%;">
+          <div id="typePosition2"></div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <div id="mapchina"></div>
+      </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
 	import echarts from 'echarts' ;
-	
+
+	import 'echarts/map/js/china.js'
+
 	export default {
 		data(){
 			return {
@@ -136,6 +141,15 @@
 			              data: ['储蓄', '基金', '股票','债券','期货']
 			          }
 			  })
+			},
+			getchina(){
+				var chart = echarts.init(document.getElementById('mapchina'));
+				chart.setOption({
+					series: [{
+						type: 'map',
+						map: 'china'
+					}]
+				});
 			}
 		},
 		mounted(){
@@ -149,8 +163,9 @@
 			        this.drawpie('typePosition');
 			        this.drawbar('typePosition2');
 			    }
-			
+				this.getchina()
 			})
+
 		}
 	}
 </script>
@@ -162,4 +177,8 @@
 	   padding: 10px;
 	   border-radius: 10px;
 	}	
+	#mapchina{
+		width:100% ;
+		height:200px ;
+	}
 </style>

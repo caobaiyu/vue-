@@ -130,11 +130,11 @@
 				<el-main>
 					<div class="zdfg clear">
 						<span @click="zhd" :class="yon ? 'btnn' : 'btnnz'">折叠左侧菜单</span>
-						<div :class="yon ? 'navtbdv  rgyu' : 'navtbdv ltyu'">
+						<!-- <div :class="yon ? 'navtbdv  rgyu' : 'navtbdv ltyu'">
 							<span class="bttxy">想做个</span>
 							<span class="activb">子导航栏</span>
 							<span class="bttxy">未完成</span>
-						</div>
+						</div> -->
 					</div>
 					<router-view />
 				</el-main>
@@ -210,6 +210,7 @@ export default {
 	/**height: 50px;*/
 	line-height: 50px;
 	padding-left: 20px;
+	box-sizing: border-box;
 	/** margin-left: 20px; */
 	background: #d3959b; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to right, #bfe6ba, #d3959b); /* Chrome 10-25, Safari 5.1-6 */

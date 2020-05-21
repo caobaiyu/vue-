@@ -9,7 +9,7 @@
  ax.interceptors.request.use( req=>{
 	 //todo 发送前
 	 if(req.method === 'post'){
-		 console.log(req)
+		//  console.log(req)
 		 req.data = JSON.stringify(req.data)
 	 }else{
 		 req.data = JSON.stringify(req.params)
@@ -23,11 +23,11 @@
  //响应拦截器
  ax.interceptors.response.use( resp => {
 	 //todo 接收前
-	 console.log(resp.data.code)
+	//  console.log(resp.data.code)
 	 if(resp.data.code !== 200){
 		 return Promise.reject(resp.data) ;
 	 }
-	 console.log(resp)
+	//  console.log(resp)
 	 return resp.data ;
 	 
  } , er =>{

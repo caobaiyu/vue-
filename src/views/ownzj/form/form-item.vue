@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Emitter form '@utils/emitter.js'
+import Emitter from '@utils/emitter.js' ;
 
 import AsyncValidator from 'async-validator' ;
 
@@ -37,7 +37,7 @@ export default {
 		fieldValue(){
 			return this.form.model[this.prop] ;
 		}
-	}
+	},
 	methods:{
 		setRules(){
 			 let rules = this.getRules();
@@ -105,7 +105,7 @@ export default {
 		  onFieldChange() {
 		    this.validate('change');
 		  }
-	}
+	},
 	mounted(){
 		if(this.props){
 			this.dispath('iForm','on-form-item-add',this);

@@ -1,6 +1,7 @@
 import Mock from 'mockjs'
 
 import getusse from './munLi.js'
+import linedat from './mapDat.js'
 
 //用户名，密码
 let username = [
@@ -50,6 +51,7 @@ export default {
 		}
 	},
 	getusse ,
+	linedat ,
 }
 
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Emitter form '@utils/emitter.js'
+import Emitter from '@utils/emitter.js'
 
 export default {
 	name: 'iInput',
