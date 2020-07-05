@@ -9,6 +9,9 @@ const mutations = {
 	},
 	changewithzs (state ,payload){
 		state.name = payload.name
+	},
+	changeIsCollapseD(state ,payload){
+		state.isCollapse = payload
 	}
 }
 
@@ -48,7 +51,8 @@ const getters = {
 
 
 const state = {
-	name: "张三"
+	name: "张三",
+	isCollapse:false ,
 }
 
 export default new Vuex.Store({

@@ -18,6 +18,7 @@ const rotue = [{
 			icon: 'el-icon-s-custom',
 		},
 		noDropdown: true,
+		childFlag:false,
 		children: [{
 			path: 'userList',
 			meta: {
@@ -37,6 +38,7 @@ const rotue = [{
 			icon: 'el-icon-share',
 		},
 		noDropdown: true,
+		childFlag:false,
 		children: [{
 			path: 'share',
 			meta: {
@@ -55,6 +57,7 @@ const rotue = [{
 			icon: 'el-icon-s-flag',
 		},
 		component: Qr,
+		childFlag: true,
 		children: [
 			{
 				path: 'fundList',
@@ -84,6 +87,7 @@ const rotue = [{
 			icon: 'el-icon-s-grid',
 		},
 		component: Qt,
+		childFlag: true,
 		// redirect: '/fundData/fundPosition',
 		children: [
 			{
@@ -121,6 +125,7 @@ const rotue = [{
 			roles: ['admin', 'editor'] // you can set roles in root nav
 		},
 		component: Qu,
+		childFlag: true,
 		children: [{
 			path: 'page',
 			name: 'pagePer',

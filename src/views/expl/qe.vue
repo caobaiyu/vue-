@@ -1,10 +1,12 @@
 <template>
   <div>
-    <h2>G2使用开始示例</h2>
+    <!-- <h3> {{$route.params.username}}</h3> -->
+    <span v-for = '(val ,ind) in mapi'>{{val}}</span>
+    <h2>G2使用开始示例</h2> 
     <div id="gg2ks"></div>
     <!-- <div id="gg3ks"></div> -->
 		<div> 用d3 写的地图，数据是topojson格式，不全，提示标签在移入移出时效果很差，不用vue的时候没问题，</div>
-		<div id="gg4ks"></div>
+		<!-- <div id="gg4ks"></div> -->
   </div>
 </template>
 
@@ -15,12 +17,14 @@ import { dataks } from "../kshjson/gg2.js";
 import { baseChar } from "../EcharsMap/Echarsbase.js";
 import cjsn from "echarts/map/json/china.json";
 
-import { setdtmap } from '../EcharsMap/dT/index.js'
+// import { setdtmap } from '../EcharsMap/dT/index.js'
 // import { option, jzdata } from "../EcharsMap/options/lineData.js";
 
 export default {
   data() {
-    return {};
+    return {
+      mapi:this.$route.params || {}
+    };
   },
   methods: {
     getGtwo() {
@@ -86,14 +90,14 @@ export default {
         }
       });
 		},
-		getdtmap(){
-			setdtmap({id:'#gg4ks',csstit:"tooltip"})
-		}
+		// getdtmap(){
+		// 	setdtmap({id:'#gg4ks',csstit:"tooltip"})
+		// }
   },
   mounted() {
     this.getGtwo();
 		// this.getChinamap();
-		this.getdtmap() ;
+		// this.getdtmap() ;
   }
 };
 </script>

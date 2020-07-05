@@ -1,119 +1,22 @@
 <template>
-	<!-- <el-row>
-	  <el-col :span="24">
-		  <div class="bg">
-			   </div>
-	  </el-col>
-	</el-row>
-	<el-row>
-	  <el-col :span="12">
-		  <div class="bg1"></div>
-	  </el-col>
-	  <el-col :span="12">
-		  <div class="bg2"></div>
-	  </el-col>
-	</el-row> 
-	<el-col :span="12">
-	    <h5>自定义颜色</h5>
-	    <el-menu
-	      default-active="2"
-	      class="el-menu-vertical-demo"
-	      @open="handleOpen"
-	      @close="handleClose"
-	      background-color="#545c64"
-	      text-color="#fff"
-	      active-text-color="#ffd04b">
-	      <el-submenu index="1">
-	        <template slot="title">
-	          <i class="el-icon-location"></i>
-	          <span>导航一</span>
-	        </template>
-	        <el-menu-item-group>
-	          <template slot="title">分组一</template>
-	          <el-menu-item index="1-1">选项1</el-menu-item>
-	          <el-menu-item index="1-2">选项2</el-menu-item>
-	        </el-menu-item-group>
-	        <el-menu-item-group title="分组2">
-	          <el-menu-item index="1-3">选项3</el-menu-item>
-	        </el-menu-item-group>
-	        <el-submenu index="1-4">
-	          <template slot="title">选项4</template>
-	          <el-menu-item index="1-4-1">选项1</el-menu-item>
-	        </el-submenu>
-	      </el-submenu>
-	      <el-menu-item index="2">
-	        <i class="el-icon-menu"></i>
-	        <span slot="title">导航二</span>
-	      </el-menu-item>
-	      <el-menu-item index="3" disabled>
-	        <i class="el-icon-document"></i>
-	        <span slot="title">导航三</span>
-	      </el-menu-item>
-	      <el-menu-item index="4">
-	        <i class="el-icon-setting"></i>
-	        <span slot="title">导航四</span>
-	      </el-menu-item>
-	    </el-menu>
-	  </el-col>
-	</el-row>
-
-	-->
-
 	<el-container class="home_container">
 		<el-header><span class="lgouttl" @click="logout">退出</span></el-header>
 		<el-container>
 			<el-aside :width="yon ? '64px' : '200px'">
-				<!-- <el-menu
-			  @open="handleOpen"
-			  :collapse="yon"
-			  :collapse-transition='false'
-			  background-color="#545c64"
-			  text-color="#fff"
-			  active-text-color="#ffd04b" unique-opened>
-			  <el-submenu :index="item[0][0]" v-for="(item , inde) in munArr" :key="item[0][0]">
-			    
-				<template  slot="title">
-					<router-link :to = "item[0][0]">
-			      <i class="el-icon-location"></i>
-			      <span>{{item[0][1]}}</span>
-				  </router-link>
-			    </template>
-				
-				//二级菜单
-				<router-link  v-if="item[1].length"  :to="item[0][0] + '/' + zim[0]"   :index="zim[0]" v-for="(zim , zid) in item[1]" :key="zim[0]">
-			    <el-menu-item>
-			      <span slot="title">{{zim[1]}}</span>
-			    </el-menu-item>
-				</router-link>
-			  </el-submenu>
-			</el-menu>
-			 -->
-				<!-- <el-menu
-			  :collapse="yon"
-			  :collapse-transition='false'
-			  background-color="#545c64"
-			  text-color="#fff"
-			  :router="true"
-			  active-text-color="#ffd04b" unique-opened>		  
-			  <el-submenu :index="item.path" v-for="item in rotue" :key="item.path">
-
-				<template  slot="title">
-			      <i :class="item.meta.icon"></i>
-			      <span>{{item.meta.title}}</span>
-			    </template>
-
-			    <el-menu-item  :index="item.path + '/' + zim.path" v-for="zim  in item.children" :key="zim[path]">
-			      <span slot="title">{{zim['meta']['title']}}</span>
-			    </el-menu-item>
-
-			  </el-submenu>
-			</el-menu> -->
-
-				<el-menu :collapse="yon" :collapse-transition="false" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" unique-opened>
-					<el-submenu :index="item.path" v-for="item in rotue" :key="item.path">
+				<el-menu :collapse="yon" 
+					:collapse-transition="false" 
+					background-color="#545c64" 
+					text-color="#fff" 
+					active-text-color="#ffd04b" 
+					unique-opened
+					:router="true"
+					>
+					<el-submenu :index="item.path" 
+						v-for="item in rotue" 
+						:key="item.path">
 						<!-- <router-link :to = "item.path"> -->
-						<template slot="title">
-							<i :class="item.meta.icon"></i>
+						<template slot="title"> 
+							 <i :class="item.meta.icon"></i>
 							<span>{{ item.meta.title }}</span>
 						</template>
 						<!-- </router-link> -->
@@ -125,6 +28,7 @@
 						</router-link>
 					</el-submenu>
 				</el-menu>
+				<!-- <leftMuns /> -->
 			</el-aside>
 			<el-container>
 				<el-main>
@@ -136,7 +40,7 @@
 							<span class="bttxy">未完成</span>
 						</div> -->
 					</div>
-					<router-view />
+					<router-view  />
 				</el-main>
 			</el-container>
 		</el-container>
@@ -145,6 +49,7 @@
 
 <script>
 import { removeStore } from '../components/utils/mty.js';
+// import leftMuns from './home/letfMuns'
 import munArr from '../router/munsList.js';
 import rotue from '../router/routecd.js';
 
@@ -154,6 +59,7 @@ munArr.forEach((v, i) => {
 
 //console.log(munArr) ;
 export default {
+	// components:{leftMuns},
 	data() {
 		return {
 			munArr,
@@ -172,11 +78,7 @@ export default {
 	},
 	watch: {
 		$route(to, from) {
-			console.log('**********');
-			console.log('------------');
-			console.log(this.$route.path);
-			console.log('------------');
-			console.log('***********');
+			
 		}
 	}
 };

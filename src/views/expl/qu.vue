@@ -1,5 +1,6 @@
 <template>
 	<div class="jl">
+		<router-link :to="{name:'userManage',params:{username:'jspang',id:'555'}}">跳转传值</router-link>
 		<h1>学习g2</h1>
 		<div class="jb">
 			<h4>G2 基础概念</h4>
@@ -69,6 +70,13 @@
 </template>
 
 <script>
+	export default{
+		data(){
+			return {
+				hhu : "我是qu"
+			}
+		}
+	}
 </script>
 
 <style lang="sass" scoped>
