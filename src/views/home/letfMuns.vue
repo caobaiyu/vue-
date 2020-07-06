@@ -8,11 +8,11 @@
              active-text-color="rgb(64, 158, 255)" 
              :collapse-transition="false"
              @select="handleSel" 
-             :router="true"
              unique-opened
+			 
     >
       <div v-for="item in rotue" 
-						:key="item.path">
+						:key="item.path+item['meta']['title']">
         <el-submenu :index="item.path"  v-if="item.childFlag">
           <template slot="title">
             <i :class="item.meta.icon"></i>
@@ -22,7 +22,7 @@
             <el-menu-item 
               v-for="zim in item.children" 
               :index="item.path + '/' + zim.path"
-              :key="zim[path]"
+              :key="zim[path]+zim['meta']['title']"
             >
              <span slot="title">{{ zim['meta']['title'] }}</span>
             </el-menu-item>
@@ -53,8 +53,8 @@ export default {
   },
   methods:{
     handleSel(key, keyPath){
-      console.log(keyPath)
-      console.log(keyPath.length)
+	  this.$emit("chgRouter",{keyPath,title:this.$route.meta.title})
+	  console.log(this.$route.meta.title)
     }
   },
   mounted(){
@@ -68,11 +68,11 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 /*覆盖组件样式*/
 .el-menu-vertical-demo {
-  height: 600px;
-  width: 54px;
+  // height: 600px;
+  width: 100%;
   text-align: left;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
@@ -86,6 +86,11 @@ export default {
   display: none;
 }
 .tabs {
+	// height: 100%;
+	.el-menu{
+		// height: 100%;
+		border: none;
+	}
   .open-tabs {
     @include wh(180px, 56px);
     line-height: 56px;

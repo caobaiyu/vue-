@@ -14,15 +14,16 @@ const rotue = [{
 		name: 'userManage',
 		component: Qe,
 		meta: {
-			title: '用户管理',
+			title: 'canvas动画',
 			icon: 'el-icon-s-custom',
 		},
 		noDropdown: true,
 		childFlag:false,
+		redirect: '/userManager/userList',
 		children: [{
 			path: 'userList',
 			meta: {
-				title: '用户管理',
+				title: 'canvas动画',
 				icon: 'iconuser',
 				routerType: 'leftmenu'
 			},
@@ -34,15 +35,16 @@ const rotue = [{
 		name: 'share',
 		component: Qi,
 		meta: {
-			title: '分享功能',
+			title: 'G2示例',
 			icon: 'el-icon-share',
 		},
 		noDropdown: true,
 		childFlag:false,
+		redirect: '/share/share',
 		children: [{
 			path: 'share',
 			meta: {
-				title: '分享功能',
+				title: 'G2示例',
 				icon: 'iconshare',
 				routerType: 'leftmenu'
 			},
@@ -58,6 +60,7 @@ const rotue = [{
 		},
 		component: Qr,
 		childFlag: true,
+		redirect: '/fundManage/fundList',
 		children: [
 			{
 				path: 'fundList',
@@ -88,7 +91,7 @@ const rotue = [{
 		},
 		component: Qt,
 		childFlag: true,
-		// redirect: '/fundData/fundPosition',
+		redirect: '/fundData/fundPosition',
 		children: [
 			{
 				path: 'fundPosition',
@@ -120,17 +123,18 @@ const rotue = [{
 		path: '/permission',
 		name: 'permission',
 		meta: {
-			title: '权限设置',
+			title: 'G2文档',
 			icon: 'el-icon-s-help',
 			roles: ['admin', 'editor'] // you can set roles in root nav
 		},
 		component: Qu,
 		childFlag: true,
+		redirect: '/permission/page',
 		children: [{
 			path: 'page',
 			name: 'pagePer',
 			meta: {
-				title: '页面权限',
+				title: '文档记录',
 				roles: ['admin'] // or you can only set roles in sub nav
 			},
 			component: Qu,

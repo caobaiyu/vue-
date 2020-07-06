@@ -1,70 +1,52 @@
 <template>
-	<el-container class="home_container">
-		<el-header><span class="lgouttl" @click="logout">退出</span></el-header>
-		<el-container>
-			<el-aside :width="yon ? '64px' : '200px'">
-				<el-menu :collapse="yon" 
-					:collapse-transition="false" 
-					background-color="#545c64" 
-					text-color="#fff" 
-					active-text-color="#ffd04b" 
-					unique-opened
-					:router="true"
-					>
-					<el-submenu :index="item.path" 
-						v-for="item in rotue" 
-						:key="item.path">
-						<!-- <router-link :to = "item.path"> -->
-						<template slot="title"> 
-							 <i :class="item.meta.icon"></i>
-							<span>{{ item.meta.title }}</span>
-						</template>
-						<!-- </router-link> -->
-						<!-- //二级菜单 -->
-						<router-link :to="item.path + '/' + zim.path" v-for="zim in item.children" :key="zim[path]">
-							<el-menu-item :index="item.path + '/' + zim.path">
-								<span slot="title">{{ zim['meta']['title'] }}</span>
-							</el-menu-item>
-						</router-link>
-					</el-submenu>
-				</el-menu>
-				<!-- <leftMuns /> -->
-			</el-aside>
-			<el-container>
-				<el-main>
-					<div class="zdfg clear">
-						<span @click="zhd" :class="yon ? 'btnn' : 'btnnz'">折叠左侧菜单</span>
-						<!-- <div :class="yon ? 'navtbdv  rgyu' : 'navtbdv ltyu'">
-							<span class="bttxy">想做个</span>
-							<span class="activb">子导航栏</span>
-							<span class="bttxy">未完成</span>
-						</div> -->
-					</div>
-					<router-view  />
-				</el-main>
-			</el-container>
-		</el-container>
-	</el-container>
+	<!-- <div> -->
+	<div class="home">
+		<div class="leftMun">
+			<div class="left_top">
+				<img  class="left_top_img" src="../components/mtu.jpg" alt="">
+				<span class="left_top_title" v-if="!isCollapse">天道有常</span>
+			</div>
+			<leftMuns @chgRouter="chgRouter" />
+			</div>
+		<div class="right">
+			<div class="header">
+				<div>
+					<i :class="['header_col',isCollapse?'el-icon-s-unfold':' el-icon-s-fold']" @click="spreadShrink"></i>
+					<span class="header_tx_col">{{ topTitle }}</span>
+				</div>
+				<span class="lgouttl header_col" @click="logout">退出</span>
+			</div>
+			<!-- <div class="tagMun"><navM /></div> -->
+			<div class="chilView"><router-view /></div>
+		</div>
+	</div>
+	<!-- <div class="Muns">
+		<leftMuns @chgRouter = "chgRouter" />
+	</div> -->
+	<!-- </div> -->
 </template>
 
 <script>
 import { removeStore } from '../components/utils/mty.js';
-// import leftMuns from './home/letfMuns'
-import munArr from '../router/munsList.js';
-import rotue from '../router/routecd.js';
+import leftMuns from './home/letfMuns';
+import navM from './home/navM.vue';
+// import munArr from '../router/munsList.js';
+// import rotue from '../router/routecd.js';
 
-munArr.forEach((v, i) => {
-	console.log(v[1].length ? true : false);
-});
+import { mapState } from 'vuex';
+
+// munArr.forEach((v, i) => {
+// 	console.log(v[1].length ? true : false);
+// });
 
 //console.log(munArr) ;
 export default {
-	// components:{leftMuns},
+	components: { leftMuns, navM },
 	data() {
 		return {
-			munArr,
-			rotue,
-			yon: false
+			tags: [{ name: '用户管理', routerData: 'comEcharts', type: 'info' }],
+			crumbData: ['用户管理'],
+			topTitle: 'canvas动画'
 		};
 	},
 	methods: {
@@ -72,94 +54,99 @@ export default {
 			removeStore('token');
 			this.$router.push('/login');
 		},
-		zhd() {
-			this.yon = this.yon ? false : true;
+		spreadShrink() {
+			let lsbl = this.isCollapse;
+			this.$store.commit('changeIsCollapseD', !lsbl);
+		},
+		chgRouter(dt) {
+			
+			let {keyPath,title} = dt;
+			let pt = keyPath.length ;
+			
+			this.$router.push({ path: keyPath[pt - 1] });
+			console.log(title)
+			// this.topTitle = title
+			// this.$route.meta.title
 		}
 	},
 	watch: {
 		$route(to, from) {
-			
+			this.topTitle = to.meta.title
+			console.log("85555555555")
+			console.log(to)
+			console.log(from)
 		}
+	},
+	computed: {
+		...mapState({ isCollapse: 'isCollapse' })
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-.lgouttl {
-	float: right;
-	@include txtgl;
-	margin-right: 1em;
-	cursor: pointer;
+.home {
+	@include wh;
+	display: flex;
+	margin: 0;
 }
-.lgouttl:hover {
-	@include txtglhv;
-}
-.home_container {
+$headerH: 70px ;
+
+.leftMun {
 	height: 100%;
+	// width: 120px;
+	background-color: rgb(48, 65, 86);
+	.left_top{
+		height: $headerH;
+		line-height:$headerH;
+		padding-left: 20px;
+		// background-color: rgb(48, 65, 86);
+		display: flex;
+		align-items: center ;
+		@include txtgl;
+	}
+	.left_top_img{
+		@include wh(30px,30px);
+		margin-right: .2em;
+	}
+	
 }
-.el-header {
+.right {
+	// background-color: blue;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+.header {
 	background-color: #000066;
-	line-height: 60px;
+	height: $headerH;
+	display: flex;
+	justify-content: space-between;
+	line-height: $headerH;
+	i{
+		margin: 0  1em 0 .2em;
+	}
 }
-.el-aside {
-	background-color: #545c64;
+
+.tagMun {
+	// background-color: #545c64;
+	// height: 50px;
 }
-.el-main {
-	padding: 0;
+.chilView {
+	// background-color: #000066;
+	flex: auto;
 }
-.zdfg {
-	width: 100%;
-	/**height: 50px;*/
-	line-height: 50px;
-	padding-left: 20px;
-	box-sizing: border-box;
-	/** margin-left: 20px; */
-	background: #d3959b; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #bfe6ba, #d3959b); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #bfe6ba, #d3959b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.lgouttl {
+	margin-right: 1em;
 }
-.btnn,
-.btnnz {
+.header_col{
+	@include txtgl;
 	cursor: pointer;
-	float: left;
-	opacity: 0.5;
-}
-.btnn {
-	@include btnn($mg: 0);
-	z-index: 2;
-}
-.btnn::before {
-	@include btnnbf(-30deg);
-}
-.btnnz {
-	@include btnn($mg: 0);
-	z-index: 2;
-}
-.btnnz::before {
-	@include btnnbf;
-}
-
-.navtbdv {
-	float: left;
-	margin-left: 2em;
-	@include tabnavbsdv;
-	span {
-		cursor: pointer;
-		@include tabnavbstx;
-		border: 0;
-	}
-	.activb {
-		@include tabnavbstxbfact;
-		&::before {
-			@include tabnavbstxbfactbf;
-		}
+	&:hover {
+		@include txtglhv;
 	}
 }
-.ltyu span::before {
-	@include xztabtxbfys(1);
-}
-
-.rgyu span::before {
-	@include xztabtxbfys(3);
+.header_tx_col{
+	@include txtgl;
 }
 </style>

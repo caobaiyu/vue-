@@ -1,11 +1,10 @@
 <template>
-  <div>
     <div>
-      <el-row :gutter="10">
-        <el-col :span="12" style="height:100%;">
+      <el-row :gutter="9">
+        <el-col :span="10" style="height:100%;">
           <div id="typePosition"></div>
         </el-col>
-        <el-col :span="12" style="height:100%;">
+        <el-col :span="10" style="height:100%;">
           <div id="typePosition2"></div>
         </el-col>
       </el-row>
@@ -13,7 +12,6 @@
         <div id="mapchina"></div>
       </el-row>
     </div>
-  </div>
 </template>
 
 <script>
@@ -171,7 +169,7 @@
 </script>
 <style lang="sass" scoped>
 	#typePosition,#typePosition2 {
-	   position: relative;
+	   
 	   width: 96%;
 	   height: 530px;
 	   padding: 10px;
@@ -180,5 +178,8 @@
 	#mapchina{
 		width:100% ;
 		height:200px ;
+	}
+	.el-row{
+		margin: 0 !important;
 	}
 </style>
